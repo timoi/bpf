@@ -84,7 +84,7 @@ def getMergedBranches(base, source):
     """ Get a list of all merged branches from 'base' till the tip of 'source'
     """
     branches = []
-    merges = run(['git', 'rev-list', '--parents', '--merges', '--reverse', "%s...%s" % (base, source)])
+    merges = run(['git', 'rev-list', '--parents', '--merges', '--reverse', '--grep=into\\ ' + source, "%s...%s" % (base, source)])
 
     if isinstance(merges, basestring):
         for commits in merges.split('\n'):
